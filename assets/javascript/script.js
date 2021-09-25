@@ -12,6 +12,11 @@ var cardsArray = document.querySelectorAll(".card");
 function getCityWeather() {
 
     var cityName = cityNameInput.value; //Get input from user
+    if(cityName === ""){
+        alert("Please input a valid city");
+        return;
+    }
+
     var linkRequest = urlAPI + cityName + "&appid=" + APIKey + "&units=metric";
 
     //Clear previous content
@@ -58,15 +63,12 @@ function getCityWeather() {
         var lat = data.coord.lat;
         var lon = data.coord.lon;
         getCityUV(lat, lon);
-
-        //Get 5-day forecast
-        getForecast();
     })
 }
 
 //Function to get UV index using API
 function getCityUV(lat, lon){
-    var oneCallURL = oneCallAPI + lat + "&lon=" + lon + "&appid=" + APIKey;
+    var oneCallURL = oneCallAPI + lat + "&lon=" + lon + "&units=metric&appid=" + APIKey;
 
     fetch(oneCallURL)
     .then(function(response){
@@ -83,6 +85,7 @@ function getCityUV(lat, lon){
         indexUV.appendChild(UVpar);
         tempInfo.appendChild(indexUV);
 
+        //As we need the same API we get forecast from here
         getForecast(data);
     })
 };
@@ -93,6 +96,7 @@ function setUVIndexColor(UVpar) {
         UVpar.style.backgroundColor = "green";
     }else if(UVpar.textContent < 5){
         UVpar.style.backgroundColor = "yellow";
+        UVpar.style.color = "black";
     }else if(UVpar.textContent < 7){
         UVpar.style.backgroundColor = "orange";
     }else if(UVpar.textContent < 10){
@@ -102,12 +106,38 @@ function setUVIndexColor(UVpar) {
     }
 }
 
-//Get 5-day forecast TODO
-function getForecast(lat, lon) {
-    return;
+//Get 5-day forecast
+function getForecast(data) {
+    //For loop to fill all cards
+    for(var i=0; i<5; i++){
+        //Display date
+        var date = new Date(data.daily[i+1].dt*1000).toLocaleDateString();
+        var dateElement = document.createElement("h5");
+        dateElement.textContent = date;
+        cardsArray[i].appendChild(dateElement);
+
+        //Display weather icon
+        var forecastImage = document.createElement("img");
+        var forecastIcon = data.daily[i+1].weather[0].icon;
+        var iconURL = "http://openweathermap.org/img/wn/" + forecastIcon + "@2x.png";
+        forecastImage.setAttribute("src",iconURL);
+        cardsArray[i].appendChild(forecastImage);
+
+        //Display forecast info
+        var forecastTemp = document.createElement("p");
+        var forecasteWind = document.createElement("p");
+        var forecastHumidity = document.createElement("p");
+
+        forecastTemp.textContent = "Temp: " + data.daily[i+1].temp.day + "°C";
+        forecasteWind.textContent = "Wind: " + data.daily[i+1].wind_speed + "Km/h";
+        forecastHumidity.textContent = "Humidity: " + data.daily[i+1].humidity + "%";
+        cardsArray[i].appendChild(forecastTemp);
+        cardsArray[i].appendChild(forecasteWind);
+        cardsArray[i].appendChild(forecastHumidity);
+    }
 }
 
-//Remove children from city-summary and temperature-info
+//Remove information from current weather and forecast
 function clearValues() {
     if(!citySummary.firstChild){
         return;
@@ -124,8 +154,16 @@ function clearValues() {
             tempInfo.removeChild(tempInfo.firstChild);
         }
     }
+
+    cardsArray.forEach(function(element, index){
+        if(!element.firstChild){
+            return;
+        }else{
+            while(element.firstChild){
+                element.removeChild(element.firstChild);
+            }
+        }
+    })
 }
-
-
 
 submitButton.addEventListener("click", getCityWeather);
