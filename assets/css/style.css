@@ -1,0 +1,102 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+header {
+    background-color: lightblue;
+    text-align: center;
+    padding: 2px 0;
+    width: 90%;
+    margin-left: 5%;
+}
+
+h1 {
+    font-weight: 800;
+}
+
+aside {
+    width: 20%;
+    height: auto;
+    margin-left: 5%;
+    float: left;
+    text-align: center;
+}
+
+aside > h2 {
+    font-weight: 700;
+    margin-left: 5%;
+    text-align: left;
+}
+
+.search-city {
+    border-radius: 5px;
+    width: 87%;
+    height: 2rem;
+    border: 2px solid;
+}
+
+#button {
+    background-color: lightskyblue;
+    border-radius: 5px;
+    width: 90%;
+    height: 1.75rem;
+}
+
+hr {
+    width: 90%;
+}
+.weather-info {
+    width: 65%;
+    height: 250px;
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.city-summary {
+    display: flex;
+    align-items: center;
+}
+
+h3 {
+    display: inline;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 700;
+    width: 65%;
+    margin-left: 25%;
+}
+
+.five-day-forecast {
+    width: 65%;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 15px;
+    margin-left: 25%;
+    justify-content: space-between;
+}
+
+.card {
+    color: white;
+    width: 18%;
+    height: 200px;
+    background-color: #00284d;
+    margin-right: 5px;
+    border-radius: 10px;
+}

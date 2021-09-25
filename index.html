@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"> 
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header><h1>Weather Dashboard</h1></header>
+    <aside>
+        <h2>Search for a City:</h2>
+        <input class="search-city" type="text" placeholder="Enter city here"><br><br>
+        <input id="button" type="submit" value="Search"><br><br>
+        <hr>
+        <ul class="recent-search">
+
+        </ul>
+    </aside>
+    <main>
+        <div class="weather-info">
+            <div class="city-summary"></div>
+            <ul class="temperature-info"></ul>
+        </div>
+        <h4>5-Day Forecast</h4>
+        <section class="five-day-forecast">
+            <div class="card" data-index="0"></div>
+            <div class="card" data-index="1"></div>
+            <div class="card" data-index="2"></div>
+            <div class="card" data-index="3"></div>
+            <div class="card" data-index="4"></div>
+        </section>
+    </main>
+    <script src="assets/javascript/script.js"></script>
+</body>
+</html>
