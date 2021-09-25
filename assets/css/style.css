@@ -4,11 +4,19 @@ body {
 
 li {
     list-style-type: none;
+    margin-top: 10px;
 }
 
 img {
     width: 50px;
     height: 50px;
+}
+
+p {
+    display: inline;
+    color: white;
+    border-radius: 5px;
+    padding: 0 3px;
 }
 
 header {
@@ -76,6 +84,10 @@ h3 {
     margin-left: 10px;
 }
 
+.temperature-info {
+    margin-left: -30px;
+}
+
 h4 {
     font-size: 20px;
     font-weight: 700;
@@ -93,6 +105,8 @@ h4 {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     color: white;
     width: 18%;
     height: 200px;
